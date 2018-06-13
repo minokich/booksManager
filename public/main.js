@@ -29,6 +29,19 @@ myBooks.on("child_changed", function(data) {
   obj.books.sort();//再描画のためにsortを呼び出す
 });
 
+//削除時
+myBooks.on("child_removed", function(data) {
+  for(i = 0;i < obj.books.length;i++){
+    console.log(data.key);
+    if(data.key === obj.books[i].key){
+      console.log('削除時');
+      obj.books.splice(i,1)
+    }
+  }
+  obj.books.sort();
+});
+
+
 //list出力
 var listVue = new Vue({
   el: '#list',
@@ -48,7 +61,7 @@ var listVue = new Vue({
         db.ref("/my/books/" + key2)
         .remove()
         .then(function(index) {
-          obj.books.splice(index,1)
+          books = [];
           alert("削除しました");
         }).catch(function(error) {
           console.log("削除に失敗しました: " + error.message)
