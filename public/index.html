@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>しょせきかんりプロト</title>
+
+   <!-- firebase -->
+   <script defer src="/__/firebase/5.0.4/firebase-app.js"></script>
+   <script defer src="/__/firebase/5.0.4/firebase-database.js"></script>
+   <script defer src="/__/firebase/init.js"></script>
+
+   <!-- firebaseで使わないものは一旦コメントアウト
+   <script defer src="/__/firebase/5.0.4/firebase-auth.js"></script>
+   <script defer src="/__/firebase/5.0.4/firebase-messaging.js"></script>
+   <script defer src="/__/firebase/5.0.4/firebase-storage.js"></script>
+-->
+<!-- Vue.js -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<style media="screen">
+
+   </style>
+   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+
+   <!-- モーダルのテスト -->
+   <link rel="stylesheet" type="text/css" href="./main.css">
+
+</head>
+<body>
+   <h2>Vue.jsで描画してる</h2>
+   <div id="list">
+      <table class="table table-hover">
+         <thead><tr>
+            <th>#</th><th>isbn13</th><th>title</th><th />
+         </tr></thead>
+         <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key">
+            <td class="index-column">{{index+1}}</td>
+            <td class="isbn-column" >{{ book.ISBN13 }}</td>
+            <td class="title-column" >{{ book.title }}</td>
+            <td class="update-btn">
+               <button id="show-modal" class="btn btn-primary btn-sm" @click="showModal = true"><i class="glyphicon glyphicon-cog"></i> update</button>
+               <modal v-if="showModal" @close="showModal = false">
+                  <h3 slot="header">データ更新</h3>
+                  <div slot="body">
+                     <input type="hidden" id="updateKey" v-bind:value="book.key">
+                     <label>ISBN</label>：<input type="text" id="updateIsbn13" v-bind:value="book.ISBN13" readonly disabled><br>
+                     <label>タイトル</label>：<input type="text" id="updateTitle" v-bind:value="book.title"><br>
+                     <label>作者</label>：<input type="text" id="updateAuthor" v-bind:value="book.author">
+                  </div>
+               </modal>
+               <button class="btn btn-danger  btn-sm" v-on:click="removeRecode(index,book.ISBN13,book.key)"><i class="glyphicon glyphicon-remove"></i> delete</button>
+            </td>
+         </tr></tbody>
+      </table>
+   </div>
+
+   <!-- DOM呼び出し後でないと動かないのでここで呼び出す -->
+   <script src="./firebase-conf.js"></script>
+   <script src="./main.js"></script>
+   <!-- モーダルのテンプレート(別ファイルに出す方法がわからない・・・) -->
+   <script type="text/x-template" id="modal-template">
+      <transition name="modal">
+         <div class="modal-mask">
+            <div class="modal-wrapper">
+               <div class="modal-container">
+
+                  <div class="modal-header"><slot name="header"></slot></div>
+                  <div class="modal-body"><slot name="body"></slot></div>
+
+                  <div class="modal-footer">
+                     <span class="modal-footer-buttons">
+                        <slot name="footer">
+                           <button class="modal-default-button btn btn-primary btn-sm" @click="$emit('close')">
+                              <i class="glyphicon glyphicon-ok-circle"></i>
+                              commit
+                           </button>
+                           <button class="modal-default-button btn btn-danger btn-sm" @click="$emit('close')">
+                              <i class="glyphicon glyphicon-remove-circle"></i>
+                              cancel
+                           </button>
+                        </slot>
+                     </span>
+                  </div>
+
+               </div>
+            </div>
+         </div>
+      </transition>
+   </script>
+
+
+</body>
+</html>
