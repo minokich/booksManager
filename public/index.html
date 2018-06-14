@@ -24,11 +24,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <style media="screen">
 
-   </style>
-   <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+</style>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
 
-   <!-- モーダルのテスト -->
-   <link rel="stylesheet" type="text/css" href="./main.css">
+<!-- モーダルのテスト -->
+<link rel="stylesheet" type="text/css" href="./main.css">
 
 </head>
 <body>
@@ -40,18 +40,29 @@
          </tr></thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key">
             <td class="index-column">{{index+1}}</td>
-            <td class="isbn-column" >{{ book.ISBN13 }}</td>
-            <td class="title-column" >{{ book.title }}</td>
+            <td class="isbn-column">{{ book.ISBN13 }}</td>
+            <td class="title-column"><span v-text="book.title"></span></td>
             <td class="update-btn">
                <button id="show-modal" class="btn btn-primary btn-sm" @click="showModal = true"><i class="glyphicon glyphicon-cog"></i> update</button>
+               <!-- モーダルの中身 -->
                <modal v-if="showModal" @close="showModal = false">
                   <h3 slot="header">データ更新</h3>
                   <div slot="body">
-                     <input type="hidden" id="updateKey" v-bind:value="book.key">
+                     <input type="hidden" id="updateKey" v-model="book.key">
                      <label>ISBN</label>：<input type="text" id="updateIsbn13" v-bind:value="book.ISBN13" readonly disabled><br>
-                     <label>タイトル</label>：<input type="text" id="updateTitle" v-bind:value="book.title"><br>
+                     <label>タイトル</label>：<input type="text" v-model="book.title"><br>
                      <label>作者</label>：<input type="text" id="updateAuthor" v-bind:value="book.author">
                   </div>
+                  <span slot="footer" class="modal-footer-buttons">
+                     <button class="modal-default-button btn btn-primary btn-sm" v-on:click="update(book.key,book.title)" @click="showModal = false">
+                        <i class="glyphicon glyphicon-ok-circle"></i>
+                        commit
+                     </button>
+                     <button class="modal-default-button btn btn-danger btn-sm" @click="showModal = false">
+                        <i class="glyphicon glyphicon-remove-circle"></i>
+                        cancel
+                     </button>
+                  </span>
                </modal>
                <button class="btn btn-danger  btn-sm" v-on:click="removeRecode(index,book.ISBN13,book.key)"><i class="glyphicon glyphicon-remove"></i> delete</button>
             </td>
@@ -68,23 +79,11 @@
          <div class="modal-mask">
             <div class="modal-wrapper">
                <div class="modal-container">
-
                   <div class="modal-header"><slot name="header"></slot></div>
                   <div class="modal-body"><slot name="body"></slot></div>
-
                   <div class="modal-footer">
-                     <span class="modal-footer-buttons">
-                        <slot name="footer">
-                           <button class="modal-default-button btn btn-primary btn-sm" @click="$emit('close')">
-                              <i class="glyphicon glyphicon-ok-circle"></i>
-                              commit
-                           </button>
-                           <button class="modal-default-button btn btn-danger btn-sm" @click="$emit('close')">
-                              <i class="glyphicon glyphicon-remove-circle"></i>
-                              cancel
-                           </button>
-                        </slot>
-                     </span>
+                     <slot name="footer">
+                     </slot>
                   </div>
 
                </div>

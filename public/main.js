@@ -51,6 +51,7 @@ var listVue = new Vue({
   },
   methods:{
     update: function(key,newTitle){
+      console.log(key + ':' + newTitle);
       db.ref("/my/books/" + key)
       .update({title: newTitle})
       console.log("更新");
