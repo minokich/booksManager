@@ -35,10 +35,10 @@
    <h2>書籍管理ツール - INOOK -</h2>
    <div id="list">
       <table class="table table-hover">
-         <thead><tr><th>#</th><th>isbn13</th><th>title</th><th /></tr></thead>
+         <thead><tr><th>#</th><th>isbn</th><th>title</th><th /></tr></thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key">
             <td class="index-column">{{index+1}}</td>
-            <td class="isbn-column">{{book.isbn13}}</td>
+            <td class="isbn-column">{{book.isbn}}</td>
             <td class="title-column" >{{book.title}}</span></td>
             <td class="update-btn">
                <button class="btn btn-primary btn-sm" v-on:click="modalOpen(book)">
@@ -50,7 +50,7 @@
                   <h3 slot="header">データ更新</h3>
                   <div slot="body">
                      <input type="hidden">
-                     <label>ISBN</label>：<input type="text" v-bind:value="book.isbn13" readonly disabled><br>
+                     <label>ISBN</label>：<input type="text" v-bind:value="book.isbn" readonly disabled><br>
                      <label>タイトル</label>：<input type="text" v-model="book.newTitle"><br>
                      <label>作者</label>：<input type="text" v-bind:value="book.newAuthor"  placeholder="現在、更新を行えません">
                   </div>
@@ -65,7 +65,7 @@
                      </button>
                   </span>
                </modal>
-               <button class="btn btn-danger btn-sm" v-on:click="removeRecode(index,book.isbn13,book.key)"><i class="glyphicon glyphicon-remove"></i> delete</button>
+               <button class="btn btn-danger btn-sm" v-on:click="removeRecode(index,book.isbn,book.key)"><i class="glyphicon glyphicon-remove"></i> delete</button>
             </td>
          </tr></tbody>
       </table>
