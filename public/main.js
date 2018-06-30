@@ -21,7 +21,7 @@ myBooks.on("child_added", function(data) {
 //更新時
 myBooks.on("child_changed", function(data) {
    for(i = 0;i < obj.books.length;i++){
-      if(obj.books[i]["isbn13"] === data.val().isbn13){
+      if(obj.books[i]["isbn"] === data.val().isbn){
          //console.log("一致しました。");
          updateVal = data.toJSON();
          //修正可能項目が追加されるたびに追記する必要あり
@@ -60,8 +60,8 @@ var listVue = new Vue({
          .update({title: book.newTitle})
          console.log("更新");
       },
-      removeRecode: function(index,isbn13,key2){
-         if(window.confirm('「'+isbn13+'」のレコードを削除します。')){
+      removeRecode: function(index,isbn,key2){
+         if(window.confirm('「'+isbn+'」のレコードを削除します。')){
             db.ref("/my/books/" + key2)
             .remove()
             .then(function(index) {
