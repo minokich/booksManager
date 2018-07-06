@@ -3,11 +3,11 @@ Vue.component('modal', {
 })
 
 var db = firebase.database();
-var myBooks = db.ref("/my/books/");
+var books = db.ref("/books/");
 var obj = {"books":[]};
 
 //初期表示&データ追加時
-myBooks.on("child_added", function(data) {
+books.on("child_added", function(data) {
    pushVal = data.toJSON();
    pushVal.key = data.key;//key追加
 
@@ -19,7 +19,7 @@ myBooks.on("child_added", function(data) {
    obj.books.sort();
 });
 //更新時
-myBooks.on("child_changed", function(data) {
+books.on("child_changed", function(data) {
    for(i = 0;i < obj.books.length;i++){
       if(obj.books[i]["isbn"] === data.val().isbn){
          //console.log("一致しました。");
@@ -36,7 +36,7 @@ myBooks.on("child_changed", function(data) {
 });
 
 //削除時
-myBooks.on("child_removed", function(data) {
+books.on("child_removed", function(data) {
    for(i = 0;i < obj.books.length;i++){
       console.log(data.key);
       if(data.key === obj.books[i].key){
@@ -56,13 +56,13 @@ var listVue = new Vue({
    },
    methods:{
       update: function(book){
-         db.ref("/my/books/" + book.key)
+         db.ref("/books/" + book.key)
          .update({title: book.newTitle})
          console.log("更新");
       },
       removeRecode: function(index,isbn,key2){
          if(window.confirm('「'+isbn+'」のレコードを削除します。')){
-            db.ref("/my/books/" + key2)
+            db.ref("/books/" + key2)
             .remove()
             .then(function(index) {
                books = [];
