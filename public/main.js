@@ -11,8 +11,8 @@ myBooks.on("child_added", function(data) {
    pushVal = data.toJSON();
    pushVal.key = data.key;//key追加
 
-   pushVal.newTitle = pushVal.title;
-   pushVal.newAuthor = pushVal.author;
+   pushVal.newTitle = pushVal.bookInfo.title;
+   pushVal.newAuthor = pushVal.bookInfo.author;
    pushVal.modelViewFlag = false;
 
    obj.books.push(pushVal);
@@ -27,8 +27,8 @@ myBooks.on("child_changed", function(data) {
          //修正可能項目が追加されるたびに追記する必要あり
          obj.books[i].title = updateVal.title;
          obj.books[i].newTitle = updateVal.title;
-         obj.books[i].author = updateVal.author;
-         obj.books[i].newAuthor = updateVal.author;
+         obj.books[i].author = updateVal.bookInfo.author;
+         obj.books[i].newAuthor = updateVal.bookInfo.author;
          break;
       }
    }

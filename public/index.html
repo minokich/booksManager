@@ -38,8 +38,8 @@
          <thead><tr><th>#</th><th>isbn</th><th>title</th><th /></tr></thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key">
             <td class="index-column">{{index+1}}</td>
-            <td class="isbn-column">{{book.isbn}}</td>
-            <td class="title-column" >{{book.title}}</span></td>
+            <td class="isbn-column">{{book.key}}</td>
+            <td class="title-column" >{{book.bookInfo.title}}</span></td>
             <td class="update-btn">
                <button class="btn btn-primary btn-sm" v-on:click="modalOpen(book)">
                   <i class="glyphicon glyphicon-pencil"></i>
