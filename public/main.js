@@ -25,9 +25,9 @@ books.on("child_changed", function(data) {
          //console.log("一致しました。");
          updateVal = data.toJSON();
          //修正可能項目が追加されるたびに追記する必要あり
-         obj.books[i].title = updateVal.title;
-         obj.books[i].newTitle = updateVal.title;
-         obj.books[i].author = updateVal.bookInfo.author;
+         obj.books[i].bookInfo.title = updateVal.bookInfo.title;
+         obj.books[i].newTitle = updateVal.tbookInfo.title;
+         obj.books[i].bookInfo.author = updateVal.bookInfo.author;
          obj.books[i].newAuthor = updateVal.bookInfo.author;
          break;
       }
@@ -56,7 +56,7 @@ var listVue = new Vue({
    },
    methods:{
       update: function(book){
-         db.ref("/books/" + book.key)
+         db.ref("/books/" + book.key+"/bookInfo")
          .update({title: book.newTitle})
          console.log("更新");
       },
