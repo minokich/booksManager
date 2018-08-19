@@ -21,8 +21,8 @@ books.on("child_added", function(data) {
 //更新時
 books.on("child_changed", function(data) {
    for(i = 0;i < obj.books.length;i++){
-      if(obj.books[i]["isbn"] === data.val().isbn){
-         //console.log("一致しました。");
+      if(obj.books[i]["key"] === data.key){
+         console.log(i + ":"+ obj.books[i]["key"]);
          updateVal = data.toJSON();
          //修正可能項目が追加されるたびに追記する必要あり
          obj.books[i].bookInfo.title = updateVal.bookInfo.title;
