@@ -53,6 +53,7 @@
                      <label>ISBN</label>：<input type="text" v-bind:value="book.key" readonly disabled><br>
                      <label>タイトル</label>：<input type="text" v-model="book.newTitle"><br>
                      <label>作者</label>：<input type="text" v-bind:value="book.newAuthor"  placeholder="現在、更新を行えません">
+                     <img v-bind:src='book.bookInfo.cover' alt="" width="" height="" border="0" />
                   </div>
                   <span slot="footer" class="modal-footer-buttons">
                      <button class="modal-default-button btn btn-primary btn-sm" @click="update(book) + modalClose(book)">
