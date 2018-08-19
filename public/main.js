@@ -26,7 +26,7 @@ books.on("child_changed", function(data) {
          updateVal = data.toJSON();
          //修正可能項目が追加されるたびに追記する必要あり
          obj.books[i].bookInfo.title = updateVal.bookInfo.title;
-         obj.books[i].newTitle = updateVal.tbookInfo.title;
+         obj.books[i].newTitle = updateVal.bookInfo.title;
          obj.books[i].bookInfo.author = updateVal.bookInfo.author;
          obj.books[i].newAuthor = updateVal.bookInfo.author;
          break;
