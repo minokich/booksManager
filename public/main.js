@@ -10,10 +10,12 @@ var obj = {"books":[]};
 books.on("child_added", function(data) {
    pushVal = data.toJSON();
    pushVal.key = data.key;//key追加
-
+   //編集用の書籍名/著者
    pushVal.newTitle = pushVal.bookInfo.title;
    pushVal.newAuthor = pushVal.bookInfo.author;
+   //モーダル表示フラグ
    pushVal.modelViewFlag = false;
+   //レンタル状況
    pushVal.isRentaled = (pushVal.rentalUserNo == '' ? false : true)
    obj.books.push(pushVal);
    obj.books.sort();
@@ -21,20 +23,20 @@ books.on("child_added", function(data) {
 //更新時
 books.on("child_changed", function(data) {
    for(i = 0;i < obj.books.length;i++){
+      //修正可能項目が追加されるたびに追記する必要あり
       if(obj.books[i]["key"] === data.key){
-         console.log(i + ":"+ obj.books[i]["key"]);
          updateVal = data.toJSON();
-         //修正可能項目が追加されるたびに追記する必要あり
+         //書籍名/著者
          obj.books[i].bookInfo.title = updateVal.bookInfo.title;
-         obj.books[i].newTitle = updateVal.bookInfo.title;
          obj.books[i].bookInfo.author = updateVal.bookInfo.author;
+         //編集用の書籍名/著者
+         bj.books[i].newTitle = updateVal.bookInfo.title;
          obj.books[i].newAuthor = updateVal.bookInfo.author;
+         //レンタル状況
          obj.books[i].isRentaled = (updateVal.rentalUserNo == '' ? false : true)
-         console.log(obj.books[i].isRentaled);
          break;
       }
    }
-   //obj.books.sort();//再描画のためにsortを呼び出す
 });
 
 //削除時
