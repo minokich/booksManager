@@ -14,7 +14,7 @@ books.on("child_added", function(data) {
    pushVal.newTitle = pushVal.bookInfo.title;
    pushVal.newAuthor = pushVal.bookInfo.author;
    pushVal.modelViewFlag = false;
-
+   pushVal.isRentaled = (pushVal.rentalUserNo == '' ? false : true)
    obj.books.push(pushVal);
    obj.books.sort();
 });
@@ -29,6 +29,8 @@ books.on("child_changed", function(data) {
          obj.books[i].newTitle = updateVal.bookInfo.title;
          obj.books[i].bookInfo.author = updateVal.bookInfo.author;
          obj.books[i].newAuthor = updateVal.bookInfo.author;
+         obj.books[i].isRentaled = (updateVal.rentalUserNo == '' ? false : true)
+         console.log(obj.books[i].isRentaled);
          break;
       }
    }

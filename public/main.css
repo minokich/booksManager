@@ -10,10 +10,15 @@ body {
       padding-right: 5%;
    }
    .title-column {width:auto;}
+   .status-column {width:100px;}
    @media (max-width: 1200px) {
       body { margin-top: 0; background: white; box-shadow: none; }
       body { border-top: 16px solid #ffa100; }
    }
+
+.rentaled {
+   background-color: #F09090;
+}
 
 .modal-mask {
    position: fixed;
