@@ -34,10 +34,14 @@
 <body>
    <h2>書籍管理ツール - INOOK -</h2>
    <div id="list">
-      <table class="table table-hover">
-         <thead><tr><th>#</th><th>isbn</th><th>title</th><th /></tr></thead>
-         <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key">
+      <table class="table">
+         <thead><tr><th>#</th><th>レンタル状況</th><th>ISBN</th><th>書籍名</th><th /></tr></thead>
+         <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key" v-bind:class="{rentaled : book.isRentaled}">
             <td class="index-column">{{index+1}}</td>
+
+            <td class="status-column" v-if="book.isRentaled">レンタル中</td>
+            <td class="status-column" v-else />
+
             <td class="isbn-column">{{book.key}}</td>
             <td class="title-column" >{{book.bookInfo.title}}</span></td>
             <td class="update-btn">
