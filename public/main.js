@@ -17,6 +17,9 @@ books.on("child_added", function(data) {
    pushVal.modelViewFlag = false;
    //レンタル状況
    pushVal.isRentaled = (pushVal.rentalUserNo == '' ? false : true)
+   //サムネがNULLならstorageのリンクを入れる
+   if(!pushVal.bookInfo.cover)pushVal.bookInfo.cover = 'https://firebasestorage.googleapis.com/v0/b/fir-test-f97de.appspot.com/o/img%2Fnoimage.jpg?alt=media&token=cc89d222-729b-4b4a-8d9c-ddc107963e8c'
+
    obj.books.push(pushVal);
    obj.books.sort();
 });

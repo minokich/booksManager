@@ -20,6 +20,12 @@ body {
    background-color: #F09090;
 }
 
+.cover-image {
+   max-width: 300px;
+   max-height: 300px;
+}
+
+
 .modal-mask {
    position: fixed;
    z-index: 9998;
