@@ -33,7 +33,7 @@ books.on("child_changed", function(data) {
          obj.books[i].bookInfo.title = updateVal.bookInfo.title;
          obj.books[i].bookInfo.author = updateVal.bookInfo.author;
          //編集用の書籍名/著者
-         bj.books[i].newTitle = updateVal.bookInfo.title;
+         obj.books[i].newTitle = updateVal.bookInfo.title;
          obj.books[i].newAuthor = updateVal.bookInfo.author;
          //レンタル状況
          obj.books[i].isRentaled = (updateVal.rentalUserNo == '' ? false : true)
@@ -63,8 +63,12 @@ var listVue = new Vue({
    },
    methods:{
       update: function(book){
-         db.ref("/books/" + book.key+"/bookInfo")
-         .update({title: book.newTitle})
+         db.ref("/books/" + book.key+"/")
+         .update({
+            'bookInfo/title' : book.newTitle ,
+            'bookInfo/author': book.newAuthor,
+            'rentalUserNo':book.rentalUserNo
+         });
          console.log("更新");
       },
       removeRecode: function(index,isbn,key2){
@@ -80,9 +84,17 @@ var listVue = new Vue({
          }
       },
       modalOpen: function(book){
+         db.ref("/books/" + book.key+"/")
+         .update({
+            'editFlag' : true
+         });
          book.modelViewFlag = true;
       },
       modalClose: function(book){
+         db.ref("/books/" + book.key+"/")
+         .update({
+            'editFlag' : false
+         });
          book.modelViewFlag = false;
       }
    }

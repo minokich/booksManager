@@ -56,8 +56,8 @@
                      <input type="hidden">
                      <label>ISBN</label>：<input type="text" v-bind:value="book.key" readonly disabled><br>
                      <label>タイトル</label>：<input type="text" v-model="book.newTitle"><br>
-                     <label>作者</label>：<input type="text" v-bind:value="book.newAuthor"  placeholder="現在、更新を行えません"><br>
-                     <label>レンタル</label>:<input type="text" v-bind:value="book.rentalUserNo">
+                     <label>作者</label>：<input type="text" v-model="book.newAuthor"  placeholder="現在、更新を行えません"><br>
+                     <label>レンタル者</label>：<input type="text" v-model="book.rentalUserNo">
                      <img v-bind:src='book.bookInfo.cover' class="cover-image" alt="" width="" height="" border="0" />
                   </div>
                   <span slot="footer" class="modal-footer-buttons">
