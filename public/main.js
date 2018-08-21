@@ -21,6 +21,9 @@ books.on("child_added", function(data) {
    if(!pushVal.bookInfo.cover)pushVal.bookInfo.cover = 'https://firebasestorage.googleapis.com/v0/b/fir-test-f97de.appspot.com/o/img%2Fnoimage.jpg?alt=media&token=cc89d222-729b-4b4a-8d9c-ddc107963e8c'
 
    obj.books.push(pushVal);
+
+   //更新されるとソートさせる
+   //CSSでソートとかさせるなら消したほうが良いかも
    obj.books.sort();
 });
 //更新時
