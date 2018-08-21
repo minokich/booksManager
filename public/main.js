@@ -69,7 +69,6 @@ var listVue = new Vue({
             'bookInfo/author': book.newAuthor,
             'rentalUserNo':book.rentalUserNo
          });
-         console.log("更新");
       },
       removeRecode: function(index,isbn,key2){
          if(window.confirm('「'+isbn+'」のレコードを削除します。')){
