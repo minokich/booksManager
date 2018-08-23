@@ -1,7 +1,7 @@
 Vue.component('modal', {
    template: '#modal-template'
 })
-
+var selfUpdate = false;
 var db = firebase.database();
 var books = db.ref("/books/");
 var obj = {"books":[]};
@@ -30,14 +30,17 @@ books.on("child_added", function(data) {
 books.on("child_changed", function(data) {
    for(i = 0;i < obj.books.length;i++){
       if(obj.books[i]["key"] === data.key){
+         if(obj.books[i].modelViewFlag && !selfUpdate)alert('別のユーザによって更新が行われました。')
+         selfUpdate = false;
          //dataを置換
          obj.books[i].bookInfo = data.toJSON().bookInfo;
-         //以下dataに含まれないパラメータ
+         //以下bookInfoに含まれないパラメータ
          //key追加
          obj.books[i].key = data.key
          //編集用の書籍名/著者
          obj.books[i].newTitle = obj.books[i].bookInfo.title;
          obj.books[i].newAuthor = obj.books[i].bookInfo.author;
+         obj.books[i].rentalUserNo = data.toJSON().rentalUserNo
          //レンタル状況
          obj.books[i].isRentaled = (obj.books[i].rentalUserNo == '' ? false : true)
          //coverUrl
@@ -68,6 +71,7 @@ var listVue = new Vue({
    },
    methods:{
       update: function(book){
+         selfUpdate = true;
          db.ref("/books/" + book.key+"/")
          .update({
             'bookInfo/title' : book.newTitle ,
