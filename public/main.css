@@ -23,8 +23,13 @@ body {
 .cover-image {
    max-width: 300px;
    max-height: 300px;
+   margin: auto;
 }
-
+.image{
+   padding: 10px;
+  width: 100%;
+  text-align: center;
+}
 
 .modal-mask {
    position: fixed;
@@ -44,7 +49,9 @@ body {
 }
 
 .modal-container {
-   width: 45%;
+   width: 90%;
+   max-height: 630px;
+   max-width: 570px;
    margin: 0px auto;
    padding: 20px 30px;
    background-color: #fff;

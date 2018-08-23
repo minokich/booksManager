@@ -58,7 +58,7 @@
                      <label>タイトル</label>：<input type="text" v-model="book.newTitle"><br>
                      <label>作者</label>：<input type="text" v-model="book.newAuthor"  placeholder="現在、更新を行えません"><br>
                      <label>レンタル者</label>：<input type="text" v-model="book.rentalUserNo">
-                     <img v-bind:src='book.bookInfo.cover' class="cover-image" alt="" width="" height="" border="0" />
+                     <div class='image'><img v-bind:src='book.bookInfo.cover' class="cover-image" alt="" width="" height="" border="0" /></div>
                   </div>
                   <span slot="footer" class="modal-footer-buttons">
                      <button class="modal-default-button btn btn-primary btn-sm" @click="update(book) + modalClose(book)">
