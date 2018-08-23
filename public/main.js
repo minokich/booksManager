@@ -5,7 +5,7 @@ Vue.component('modal', {
 var db = firebase.database();
 var books = db.ref("/books/");
 var obj = {"books":[]};
-
+var thisUserEdit = false
 //初期表示&データ追加時
 books.on("child_added", function(data) {
    pushVal = data.toJSON();
@@ -29,17 +29,19 @@ books.on("child_added", function(data) {
 //更新時
 books.on("child_changed", function(data) {
    for(i = 0;i < obj.books.length;i++){
-      //修正可能項目が追加されるたびに追記する必要あり
       if(obj.books[i]["key"] === data.key){
-         updateVal = data.toJSON();
-         //書籍名/著者
-         obj.books[i].bookInfo.title = updateVal.bookInfo.title;
-         obj.books[i].bookInfo.author = updateVal.bookInfo.author;
+         //dataを置換
+         obj.books[i].bookInfo = data.toJSON().bookInfo;
+         //以下dataに含まれないパラメータ
+         //key追加
+         obj.books[i].key = data.key
          //編集用の書籍名/著者
-         obj.books[i].newTitle = updateVal.bookInfo.title;
-         obj.books[i].newAuthor = updateVal.bookInfo.author;
+         obj.books[i].newTitle = obj.books[i].bookInfo.title;
+         obj.books[i].newAuthor = obj.books[i].bookInfo.author;
          //レンタル状況
-         obj.books[i].isRentaled = (updateVal.rentalUserNo == '' ? false : true)
+         obj.books[i].isRentaled = (obj.books[i].rentalUserNo == '' ? false : true)
+         //coverUrl
+         if(!obj.books[i].bookInfo.cover)obj.books[i].bookInfo.cover = 'https://firebasestorage.googleapis.com/v0/b/fir-test-f97de.appspot.com/o/img%2Fnoimage.jpg?alt=media&token=cc89d222-729b-4b4a-8d9c-ddc107963e8c'
          break;
       }
    }
@@ -86,17 +88,9 @@ var listVue = new Vue({
          }
       },
       modalOpen: function(book){
-         db.ref("/books/" + book.key+"/")
-         .update({
-            'editFlag' : true
-         });
          book.modelViewFlag = true;
       },
       modalClose: function(book){
-         db.ref("/books/" + book.key+"/")
-         .update({
-            'editFlag' : false
-         });
          book.modelViewFlag = false;
       }
    }
