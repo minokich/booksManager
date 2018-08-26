@@ -36,7 +36,7 @@
      <h2>書籍管理ツール - INOOK -</h2>
    </div>
    <div class="responsive-img">
-     <img src="images/library.jpg" alt="図書館">
+     <img src="./images/library.jpg" alt="図書館">
    </div>
    <div id="list">
       <table class="table table-hover">
@@ -45,7 +45,7 @@
              <th>書籍情報</th>
              <th></th>
              <th></th>
-             <th class="status-column">状態</th>             
+             <th class="status-column">状態</th>
            </tr>
          </thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key" v-bind:class="{rentaled : book.isRentaled}">
