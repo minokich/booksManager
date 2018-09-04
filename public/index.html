@@ -32,15 +32,34 @@
 
 </head>
 <body>
-   <h2>書籍管理ツール - INOOK -</h2>
+   <div id="inooktitle">
+     <h2>書籍管理ツール - INOOK -</h2>
+   </div>
+   <div class="responsive-img">
+     <img src="images/library.jpg" alt="図書館">
+   </div>
    <div id="list">
-      <table class="table">
-         <thead><tr><th>#</th><th>ISBN</th><th>書籍名</th><th /><th>レンタル状況</th></tr></thead>
+      <table class="table table-hover">
+         <thead>
+           <tr>
+             <th>書籍情報</th>
+             <th></th>
+             <th></th>
+             <th class="status-column">状態</th>             
+           </tr>
+         </thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key" v-bind:class="{rentaled : book.isRentaled}">
-            <td class="index-column">{{index+1}}</td>
-
-            <td class="isbn-column">{{book.key}}</td>
-            <td class="title-column" >{{book.bookInfo.title}}</span></td>
+            <td class="books-column">
+              <div class="item-img">
+                <img v-bind:src='book.bookInfo.cover' class="book-img">
+              </div>
+            </td>
+            <td>
+               <div class="item-info">
+                <p>{{book.bookInfo.title}}</p>
+                <p>ISBN:{{book.key}}</p>
+              </div>
+            </td>
             <td class="update-btn">
                <button class="btn btn-primary btn-sm" v-on:click="modalOpen(book)">
                   <i class="glyphicon glyphicon-pencil"></i>
@@ -70,8 +89,8 @@
                </modal>
                <button class="btn btn-danger btn-sm" v-on:click="removeRecode(index,book.key,book.key)"><i class="glyphicon glyphicon-remove"></i> delete</button>
             </td>
-            <td class="status-column image-cell" v-if="book.isRentaled"><img class='stock-img' src='./img/outOfStock.png'/></td>
-            <td class="status-column image-cell" v-else ><img class='stock-img' src='./img/stock.png'/></td>
+            <td class="status-column image-cell" v-if="book.isRentaled"><img class='stock-img' src='./images/outOfStock.png'/></td>
+            <td class="status-column image-cell" v-else ><img class='stock-img' src='./images/stock.png'/></td>
          </tr></tbody>
       </table>
    </div>
