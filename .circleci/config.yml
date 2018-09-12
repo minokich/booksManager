@@ -8,4 +8,4 @@ jobs:
       - checkout
       - deploy:
           branch: master
-          commands: firebase deploy --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
+          command: firebase deploy --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
