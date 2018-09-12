@@ -1,8 +1,0 @@
-dependencies:
-  override:
-    - npm install -g firebase-tools
-deployment:
-  deploy:
-    branch: master
-    commands:
-      - firebase deploy --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
