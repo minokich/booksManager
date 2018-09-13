@@ -17,11 +17,13 @@
 div.responsive-img img{
     position: 50% 50%;
     size: cover;
-    width: 100%;
+    max-width: 700px;
 }
 div.responsive-img{
+    text-align: center;
     margin-top: 10px;
     margin-bottom: 50px;
+    width: 100%;
 }
 .books-column{
     width:auto;
