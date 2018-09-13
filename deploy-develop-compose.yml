@@ -6,7 +6,7 @@ services:
       - FIREBASE_TOKEN
     build:
       context: ./
-      comand: |
+      command: |
         echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/public/firebase-conf.js
       dockerfile: deploy.dockerfile
     volumes:
