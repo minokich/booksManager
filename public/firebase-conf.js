@@ -1,1 +1,0 @@
-var config = {  apiKey: "AIzaSyAQWUt4ppFt3kG0k8CQyRoYSAhHa-xP_7Q",  authDomain: "fir-test-f97de.firebaseapp.com",  databaseURL: "https://fir-test-f97de.firebaseio.com",  projectId: "fir-test-f97de",  storageBucket: "fir-test-f97de.appspot.com",  messagingSenderId: "1030091857819"};firebase.initializeApp(config);
