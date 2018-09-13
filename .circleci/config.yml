@@ -5,6 +5,10 @@ jobs:
     steps:
       - checkout
       - run:
+         name: hoge
+         command: |
+           ls -lar
+      - run:
          name: createconf
          command: |
            echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/public/firebase-conf.js
