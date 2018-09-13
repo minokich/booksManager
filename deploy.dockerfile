@@ -13,5 +13,4 @@ ARG FIREBASE_TOKEN="x/xxxxxxxxxxxx"
 CMD cd functions && npm install && cd ../ \
     && echo ${FIREBASE_PROJECT} \
     && echo ${FIREBASE_TOKEN} \
-    && firebase use ${FIREBASE_PROJECT} --token ${FIREBASE_TOKEN} \
     && firebase deploy --token ${FIREBASE_TOKEN}
