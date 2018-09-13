@@ -7,4 +7,5 @@ jobs:
       - run:
           name: deploy
           command: |
+            echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/public/firebase-conf.js |
             docker-compose -f deploy-develop-compose.yml up --build

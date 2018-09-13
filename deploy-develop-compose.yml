@@ -4,7 +4,6 @@ services:
     environment:
       - FIREBASE_PROJECT
       - FIREBASE_TOKEN
-      - FIREBASE_CONF_JS
     build:
       context: ./
       dockerfile: deploy.dockerfile
