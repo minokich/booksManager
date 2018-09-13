@@ -1,11 +1,10 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: .circleci/docker-firebase:latest
-    working_directory: ~/project
+    machine: true
     steps:
       - checkout
-      - deploy:
-          branch: master
-          command: firebase deploy --project "$FIREBASE_PJ" --token "$FIREBASE_TOKEN"
+      - run:
+          name: deploy
+          command: |
+            docker-compose -f ./deploy-develop-compose.yml up --build
