@@ -1,0 +1,11 @@
+version: '2'
+services:
+  deploy:
+    environment:
+      - FIREBASE_PROJECT
+      - FIREBASE_TOKEN
+    build:
+      context: ./
+      dockerfile: deploy.dockerfile
+    volumes:
+      - ./:/app
