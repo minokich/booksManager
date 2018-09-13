@@ -10,4 +10,5 @@ WORKDIR app
 ARG FIREBASE_PROJECT="develop"
 ARG FIREBASE_TOKEN="x/xxxxxxxxxxxx"
 
-CMD  firebase deploy --token ${FIREBASE_TOKEN}
+CMD  echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/public/firebase-conf.js\
+     && firebase deploy --token ${FIREBASE_TOKEN}
