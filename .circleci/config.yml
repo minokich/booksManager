@@ -7,7 +7,7 @@ jobs:
       - run:
          name: createconf
          command: |
-           echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/public/firebase-conf.js
+           echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/public/firebase-conf.js
       - run:
           name: deploy
           command: |
