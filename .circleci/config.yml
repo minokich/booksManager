@@ -5,10 +5,6 @@ jobs:
     steps:
       - checkout
       - run:
-         name: hoge
-         command: |
-           echo ${FIREBASE_CONF_JS}
-      - run:
          name: createconf
          command: |
            echo ${FIREBASE_CONF_JS} > ./public/firebase-conf.js
