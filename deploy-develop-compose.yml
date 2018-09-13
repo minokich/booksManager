@@ -4,10 +4,10 @@ services:
     environment:
       - FIREBASE_PROJECT
       - FIREBASE_TOKEN
+    command: |
+      - echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/public/firebase-conf.js
     build:
       context: ./
-      command: |
-        echo ${FIREBASE_CONF_JS} > ${HOME}/${CIRCLE_PROJECT_REPONAME}/app/public/firebase-conf.js
       dockerfile: deploy.dockerfile
     volumes:
       - ./:/app
