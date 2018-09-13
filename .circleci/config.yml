@@ -7,4 +7,4 @@ jobs:
       - run:
           name: deploy
           command: |
-            docker-compose -f ./deploy-develop-compose.yml up --build
+            docker-compose -f deploy-develop-compose.yml up --build
