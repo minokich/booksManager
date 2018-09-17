@@ -32,15 +32,31 @@
 
 </head>
 <body>
-   <h2>書籍管理ツール - INOOK -</h2>
+   <div class="responsive-img">
+     <img src="./images/facebook_cover_photo_2.png" alt="INOOK -書籍管理サービス-">
+   </div>
    <div id="list">
-      <table class="table">
-         <thead><tr><th>#</th><th>ISBN</th><th>書籍名</th><th /><th>レンタル状況</th></tr></thead>
+      <table class="table table-hover">
+         <thead>
+           <tr>
+             <th>書籍情報</th>
+             <th></th>
+             <th></th>
+             <th class="status-column">状態</th>
+           </tr>
+         </thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key" v-bind:class="{rentaled : book.isRentaled}">
-            <td class="index-column">{{index+1}}</td>
-
-            <td class="isbn-column">{{book.key}}</td>
-            <td class="title-column" >{{book.bookInfo.title}}</span></td>
+            <td class="books-column">
+              <div>
+                <img v-bind:src='book.bookInfo.cover' class="book-img">
+              </div>
+            </td>
+            <td>
+               <div class="item-info">
+                <p>{{book.bookInfo.title}}</p>
+                <p>ISBN:{{book.key}}</p>
+              </div>
+            </td>
             <td class="update-btn">
                <button class="btn btn-primary btn-sm" v-on:click="modalOpen(book)">
                   <i class="glyphicon glyphicon-pencil"></i>
@@ -53,8 +69,8 @@
                      <input type="hidden">
                      <label>ISBN</label>：<input type="text" v-bind:value="book.key" readonly disabled><br>
                      <label>タイトル</label>：<input type="text" v-model="book.newTitle"><br>
-                     <label>作者</label>：<input type="text" v-bind:value="book.newAuthor"  placeholder="現在、更新を行えません"><br>
-                     <label></label>：<input type="text" v-bind:value="book.rentalUserNo">
+                     <label>作者</label>：<input type="text" v-bind:value="book.newAuthor"><br>
+                     <label>借りてる人</label>：<input type="text" v-bind:value="book.rentalUserNo">
                      <img v-bind:src='book.bookInfo.cover' class="cover-image" alt="" width="" height="" border="0" />
                   </div>
                   <span slot="footer" class="modal-footer-buttons">
@@ -70,8 +86,8 @@
                </modal>
                <button class="btn btn-danger btn-sm" v-on:click="removeRecode(index,book.key,book.key)"><i class="glyphicon glyphicon-remove"></i> delete</button>
             </td>
-            <td class="status-column image-cell" v-if="book.isRentaled"><img class='stock-img' src='./img/outOfStock.png'/></td>
-            <td class="status-column image-cell" v-else ><img class='stock-img' src='./img/stock.png'/></td>
+            <td class="status-column image-cell" v-if="book.isRentaled"><img class='stock-img' src='./images/outOfStock.png'/></td>
+            <td class="status-column image-cell" v-else ><img class='stock-img' src='./images/stock.png'/></td>
          </tr></tbody>
       </table>
    </div>
