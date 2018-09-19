@@ -3,7 +3,7 @@
     color          : #ffffff;            /* 文字の色 */
     font-size      : 36pt;               /* 文字のサイズ */
     letter-spacing : 4px;                /* 文字間 */
-    text-shadow    :
+    text-shadow    : 
          2px  2px 1px #003366,
         -2px  2px 1px #003366,
          2px -2px 1px #003366,
@@ -19,12 +19,14 @@ div.responsive-img img{
     size: cover;
     max-width: 700px;
 }
+
 div.responsive-img{
     text-align: center;
     margin-top: 10px;
     margin-bottom: 50px;
     width: 100%;
 }
+
 .books-column{
     width:auto;
     padding-left: 10px;
@@ -33,6 +35,12 @@ div.responsive-img{
     white-space: nowrap;
     min-width: 110px;
     height: 120px;
+}
+.item-img{
+    position: absolute;
+	margin: auto;
+    width: 100px;
+	height: 100px;    
 }
 
 .item-info{
@@ -54,7 +62,8 @@ thead{
     text-overflow: ellipsis;
     max-width: 500px;
 }
-.update-btn {
+
+.update-btn {    
     float: right;
     vertical-align: middle;
 }
@@ -66,24 +75,25 @@ body {
     margin: 20;
     padding: 20;
 }
+  
 #list {
     max-width: 80%;
     padding-left: 5%;
     padding-right: 5%;
     margin: auto;
-
     height:350px;
     overflow:auto;
 }
 
 #table-body{
-    height: 120px;
+    height: 120px;   
 }
+  
 .title-column {width:auto; }
-.status-column {
-    width:auto;
-    padding-left: 10px;
-    padding-right: 10px;
+.status-column { 
+    width:auto; 
+    padding-left: 10px; 
+    padding-right: 10px; 
     height: inherit;
     white-space: nowrap;
 }
@@ -98,7 +108,7 @@ body {
 .book-img {
     max-width: 100px;
     max-height: 100px;
-    margin: auto;
+    margin: auto; 
     white-space: nowrap;
 }
 
@@ -113,9 +123,8 @@ body {
     width: 100%;
     text-align: center;
     margin: 5px;
-
 }
-
+  
 #rental-status{
     width:150px;
 }

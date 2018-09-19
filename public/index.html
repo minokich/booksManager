@@ -42,12 +42,12 @@
              <th>書籍情報</th>
              <th></th>
              <th></th>
-             <th class="status-column">状態</th>
+             <th class="status-column">状態</th>             
            </tr>
          </thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key" v-bind:class="{rentaled : book.isRentaled}">
             <td class="books-column">
-              <div>
+              <div class="item-img">
                 <img v-bind:src='book.bookInfo.cover' class="book-img">
               </div>
             </td>
