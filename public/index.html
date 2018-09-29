@@ -47,7 +47,7 @@
          </thead>
          <tbody v-for="(book, index) in books" id="table-body"><tr v-bind:id="book.key" v-bind:class="{rentaled : book.isRentaled}">
             <td class="books-column">
-              <div class="item-img">
+              <div>
                 <img v-bind:src='book.bookInfo.cover' class="book-img">
               </div>
             </td>
@@ -113,7 +113,5 @@
          </div>
       </transition>
    </script>
-
-
 </body>
 </html>
